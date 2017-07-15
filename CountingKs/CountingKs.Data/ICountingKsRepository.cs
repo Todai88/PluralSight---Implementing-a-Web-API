@@ -11,7 +11,7 @@ namespace CountingKs.Data
 
     // Food
     IQueryable<Food> FindFoodsWithMeasures(string searchString);
-    IQueryable<Food> GetAllFoodsWithMeassures();
+    IQueryable<Food> GetAllFoods();
     IQueryable<Food> GetAllFoodsWithMeasures();
     Food GetFood(int id);
     Measure GetMeasure(int id);

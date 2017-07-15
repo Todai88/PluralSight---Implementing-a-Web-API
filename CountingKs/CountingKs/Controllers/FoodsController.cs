@@ -22,23 +22,30 @@ namespace CountingKs.Controllers
             _modelFactory = new ModelFactory();
         }
 
-        public IEnumerable<FoodModel> Get()
+        public IEnumerable<FoodModel> Get(bool includesMeasures = true)
         {
-            var repo = new CountingKsRepository(
-                new CountingKsContext());
+            IQueryable<Food> query;
 
-            var results = repo.GetAllFoodsWithMeasures()
-                              .OrderBy(f => f.Description)
+            if (includesMeasures)
+            {
+                query = _repo.GetAllFoodsWithMeasures();
+            }
+            else
+            {
+                query = _repo.GetAllFoods();
+            }
+
+            var result = query.OrderBy(f => f.Description)
                               .Take(25)
                               .ToList()
                               .Select(f => _modelFactory.Create(f));
 
-            return results;
+            return result;
         }
 
-        public FoodModel Get (int id)
+        public FoodModel Get (int foodid)
         {
-            return _modelFactory.Create(_repo.GetFood(id));
+            return _modelFactory.Create(_repo.GetFood(foodid));
         }
     }
 }

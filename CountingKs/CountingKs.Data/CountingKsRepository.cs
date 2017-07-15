@@ -16,7 +16,7 @@ namespace CountingKs.Data
       _ctx = ctx;
     }
 
-    public IQueryable<Food> GetAllFoodsWithMeassures()
+    public IQueryable<Food> GetAllFoods()
     {
       return _ctx.Foods;
     }
