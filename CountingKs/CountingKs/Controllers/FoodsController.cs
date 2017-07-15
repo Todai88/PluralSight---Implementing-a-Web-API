@@ -7,39 +7,38 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Data.Entity;
 using CountingKs.Data.Entities;
+using CountingKs.Models;
 
 namespace CountingKs.Controllers
 {
     public class FoodsController : ApiController
     {
         private ICountingKsRepository _repo;
+        private ModelFactory _modelFactory;
 
         public FoodsController(ICountingKsRepository repo)
         {
             _repo = repo;
+            _modelFactory = new ModelFactory();
         }
 
-        public IEnumerable<object> Get()
+        public IEnumerable<FoodModel> Get()
         {
             var repo = new CountingKsRepository(
                 new CountingKsContext());
 
-            var results = repo.GetAllFoodsWithMeassures()
+            var results = repo.GetAllFoodsWithMeasures()
                               .OrderBy(f => f.Description)
                               .Take(25)
                               .ToList()
-                              .Select(f => new
-                              {
-                                  Description = f.Description,
-                                  Measures = f.Measures
-                                              .Select(m => new
-                                              {
-                                                  Description = m.Description,
-                                                  Calories = m.Calories
-                                              })
-                              });
+                              .Select(f => _modelFactory.Create(f));
 
             return results;
+        }
+
+        public FoodModel Get (int id)
+        {
+            return _modelFactory.Create(_repo.GetFood(id));
         }
     }
 }
