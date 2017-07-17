@@ -1,23 +1,22 @@
-﻿using CountingKs.Data;
-using CountingKs.Models;
-using CountingKs.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
+using System.Web.Http;
+using CountingKs.Data;
+using CountingKs.Models;
+using CountingKs.Services;
 
 namespace CountingKs.Controllers
 {
     public class DiariesController : BaseApiController
     {
         private ICountingKsIdentityService _identityService;
-
         public DiariesController(ICountingKsRepository repo,
                                  ICountingKsIdentityService identityService)
-            : base(repo)
+          : base(repo)
         {
             _identityService = identityService;
         }
@@ -26,27 +25,26 @@ namespace CountingKs.Controllers
         {
             var username = _identityService.CurrentUser;
             var results = TheRepository.GetDiaries(username)
-                                        .OrderBy(d => d.CurrentDate)
-                                        .Take(10)
-                                        .ToList()
-                                        .Select(d => 
-                                            TheModelFactory.Create(d));
+                                       .OrderByDescending(d => d.CurrentDate)
+                                       .Take(10)
+                                       .ToList()
+                                       .Select(d => TheModelFactory.Create(d));
+
             return results;
         }
 
-        public HttpResponseMessage Get(DateTime diaryid)
+        public HttpResponseMessage Get(DateTime diaryId)
         {
             var username = _identityService.CurrentUser;
-            var result = TheRepository.GetDiary(username, diaryid);
+            var result = TheRepository.GetDiary(username, diaryId);
 
             if (result == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
-            var response = Request.CreateResponse(HttpStatusCode.OK, 
-                                                  TheModelFactory.Create(result));
-            // silly
-            return response;
+
+            return Request.CreateResponse(HttpStatusCode.OK,
+              TheModelFactory.Create(result));
         }
     }
 }

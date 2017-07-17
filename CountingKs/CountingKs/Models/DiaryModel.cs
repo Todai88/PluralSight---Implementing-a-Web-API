@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
 namespace CountingKs.Models
 {
@@ -10,6 +9,6 @@ namespace CountingKs.Models
     {
         public string Url { get; set; }
         public DateTime CurrentDate { get; set; }
-        //public IEnumerable<DiaryEntryModel> Entries { get; set; }
+        public IEnumerable<DiaryEntryModel> Entries { get; set; }
     }
 }
