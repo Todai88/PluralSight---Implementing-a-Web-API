@@ -5,6 +5,7 @@ using System.Net.Http.Formatting;
 using System.Web.Http;
 using Newtonsoft.Json.Serialization;
 using System.Data.Entity;
+using WebApiContrib.Formatting.Jsonp;
 
 namespace CountingKs
 {
@@ -58,9 +59,13 @@ namespace CountingKs
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().FirstOrDefault();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
+            // Remove comments to add JSONP support
+            //var formatter = new JsonpMediaTypeFormatter(jsonFormatter);
+            //config.Formatters.Insert(0, formatter);
 
-
-
+#if !DEBUG
+            config.Filters.Add(new RequireHttpsAttribute());
+#endif
 
         }
     }

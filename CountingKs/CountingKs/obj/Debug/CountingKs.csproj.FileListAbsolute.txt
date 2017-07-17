@@ -101,3 +101,5 @@ D:\Schoolwork\Cygwin\Studies\Implementing a Web API\CountingKs\CountingKs\bin\Ni
 D:\Schoolwork\Cygwin\Studies\Implementing a Web API\CountingKs\CountingKs\bin\Ninject.Web.Common.xml
 D:\Schoolwork\Cygwin\Studies\Implementing a Web API\CountingKs\CountingKs\bin\Ninject.Web.Mvc.xml
 D:\Schoolwork\Cygwin\Studies\Implementing a Web API\CountingKs\CountingKs\bin\WebApiContrib.IoC.Ninject.dll
+D:\Schoolwork\Cygwin\Studies\Implementing a Web API\CountingKs\CountingKs\bin\WebApiContrib.Formatting.Jsonp.dll
+D:\Schoolwork\Cygwin\Studies\Implementing a Web API\CountingKs\CountingKs\bin\WebApiContrib.Formatting.Jsonp.pdb
