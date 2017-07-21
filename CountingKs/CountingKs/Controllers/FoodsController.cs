@@ -13,6 +13,7 @@ using CountingKs.Filters;
 
 namespace CountingKs.Controllers
 {
+    [CountingKsAuthorize(false)]
     public class FoodsController : BaseApiController
     {
 

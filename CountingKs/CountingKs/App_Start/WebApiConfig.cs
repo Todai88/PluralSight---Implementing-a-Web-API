@@ -28,15 +28,15 @@ namespace CountingKs
             );
 
             config.Routes.MapHttpRoute(
-            name: "Diaries",
-            routeTemplate: "api/user/diaries/{diaryid}",
-            defaults: new { controller = "diaries", diaryid = RouteParameter.Optional }
+                name: "Diaries",
+                routeTemplate: "api/user/diaries/{diaryid}",
+                defaults: new { controller = "diaries", diaryid = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-            name: "DiarySummary",
-            routeTemplate: "api/user/diaries/{diaryid}/summary",
-            defaults: new { controller = "diarysummary"}
+                name: "DiarySummary",
+                routeTemplate: "api/user/diaries/{diaryid}/summary",
+                defaults: new { controller = "diarysummary"}
             );
 
             config.Routes.MapHttpRoute(
@@ -44,12 +44,17 @@ namespace CountingKs
                 routeTemplate: "api/user/diaries/{diaryid}/entries/{id}",
                 defaults: new { controller = "diaryentries", id = RouteParameter.Optional }
             );
+            config.Routes.MapHttpRoute(
+                name: "Token",
+                routeTemplate: "api/token",
+                defaults: new { controller = "Token" }
+            );
 
-            //config.Routes.MapHttpRoute(
-            //    name: "DefaultApi",
-            //    routeTemplate: "api/{controller}/{id}",
-            //    defaults: new { id = RouteParameter.Optional }
-            //);
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
 
             // Uncomment the following line of code to enable query support for actions with an IQueryable or IQueryable<T> return type.
             // To avoid processing unexpected or malicious queries, use the validation settings on QueryableAttribute to validate incoming queries.

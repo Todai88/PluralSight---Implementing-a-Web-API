@@ -8,6 +8,7 @@ using System.Web.Http;
 using CountingKs.Data;
 using CountingKs.Models;
 using CountingKs.Services;
+using CountingKs.Filters;
 
 namespace CountingKs.Controllers
 {
@@ -21,6 +22,7 @@ namespace CountingKs.Controllers
             _identityService = identityService;
         }
 
+        [CountingKsAuthorize]
         public IEnumerable<DiaryModel> Get()
         {
             var username = _identityService.CurrentUser;
