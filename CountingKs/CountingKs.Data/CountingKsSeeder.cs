@@ -84,7 +84,7 @@ namespace CountingKs.Data
 
       try
       {
-                //test
+                //tester
         // Load the excel sheet with data into the database
         var rawData = OpenExcel("~/App_Data/ABBREV.xls", "ABBREV22");
 
